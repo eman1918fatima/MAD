@@ -1,144 +1,151 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart'; 
+import 'package:week3/screens/age.dart';
+import 'package:week3/screens/area.dart';
+import 'package:week3/screens/BMI.dart';
+import 'package:week3/screens/currency.dart';
+
+import 'package:week3/screens/friendship.dart';
+import 'package:week3/screens/length.dart';
+import 'package:week3/screens/splash.dart';
+import 'package:week3/screens/temperature.dart';
+
+import 'package:week3/screens/time.dart';
+import 'package:week3/screens/time1.dart';
+import 'package:week3/screens/volume.dart';
+import 'package:week3/screens/weight.dart';
 
 void main() {
-  runApp(SobatTernakApp());
+  runApp(const MyApp());
 }
 
-class SobatTernakApp extends StatelessWidget {
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      title: 'Calculator',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey),
+        useMaterial3: true,
+      ),
+      home: const SplashScreen(),
     );
   }
 }
 
-class LoginPage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+
+  final String title;
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final List<Map<String, dynamic>> categories = [
+    {"name": "Friendship", "img": "images/friendship.png", "route": const FriendshipCalculator()},
+    {"name": "Currency USD", "img": "images/currency.png", "route": const CurrencyConverter()},
+    {"name": "Temperature", "img": "images/temperature.png", "route": const Temperature()},
+    {"name": "BMI", "img": "images/bmi.png", "route": const BMIScreen()},
+    {"name": "Length", "img": "images/length.png", "route": const Length()},
+    {"name": "Temperature Kelvin", "img": "images/temperature.png", "route": const TemperatureKelvin()},
+    {"name": "Area", "img": "images/area.png", "route": const AreaConverter()},
+    {"name": "Volume", "img": "images/volume.png", "route": const VolumeConverter()},
+    {"name": "Weight", "img": "images/weight.png", "route": const WeightConverter()},
+    {"name": "Time Belgium", "img": "images/time.png", "route": const TimeBelgiumConverter()},
+    {"name": "Age", "img": "images/age.png", "route": const AgeCalculator()},
+    {"name": "Currency Pound", "img": "images/currency.png", "route": const CurrencyPoundConverter()},
+    {"name": "Time", "img": "images/time.png", "route": const TimeConverter()},
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Colors.purple, Colors.deepPurple],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
-        child: Center(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset('assets/sobat_ternak_logo.png', height: 120),
-                  SizedBox(height: 16),
-                  ToggleButtons(
-                    isSelected: [true, false],
-                    onPressed: (index) {},
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.white,
-                    selectedColor: Colors.purple,
-                    fillColor: Colors.white,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Text('Existing'),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Text('New Users'),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 20),
-                  TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Username',
-                      filled: true,
-                      fillColor: Colors.white,
-                      prefixIcon: Icon(Icons.person),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Email',
-                      filled: true,
-                      fillColor: Colors.white,
-                      prefixIcon: Icon(Icons.email),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      hintText: 'Password',
-                      filled: true,
-                      fillColor: Colors.white,
-                      prefixIcon: Icon(Icons.lock),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      hintText: 'Confirm Password',
-                      filled: true,
-                      fillColor: Colors.white,
-                      prefixIcon: Icon(Icons.lock),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      backgroundColor: Colors.purple,
-                    ),
-                    child: Text('Sign Up'),
-                  ),
-                  SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'OR',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.facebook, color: Colors.white),
-                      SizedBox(width: 20),
-                      FaIcon(FontAwesomeIcons.google, size: 50, color: Colors.blue), // Fixed
-                    ],
-                  ),
-                ],
-              ),
+      backgroundColor: Colors.blue[50],
+      appBar: AppBar(
+        backgroundColor: Colors.blue[50],
+        actions: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.menu, color: Colors.blue[400]),
             ),
           ),
+        ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Welcome to",
+              style: TextStyle(color: Colors.blue[600], fontSize: 16),
+            ),
+            Text(
+              "Multi Calculator",
+              style: TextStyle(color: Colors.blue[700], fontSize: 30, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 80),
+            Text(
+              "Category",
+              style: TextStyle(fontSize: 18, color: Colors.blue[600]),
+            ),
+            const SizedBox(height: 20),
+            Expanded(
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 15,
+                  mainAxisSpacing: 20,
+                  childAspectRatio: 0.9,
+                ),
+                itemCount: categories.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => categories[index]["route"]),
+                      );
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 5,
+                            spreadRadius: 1,
+                            offset: Offset(0, 2),
+                          )
+                        ],
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            categories[index]["img"],
+                            width: 50,
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            categories[index]["name"],
+                            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
